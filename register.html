@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Forense - VerisArt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@600;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex flex-col min-h-screen bg-[#f7f9fb]">
+    <div id="navbar-container"></div>
+    <script>
+        fetch('Navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow flex items-center justify-center p-2 md:p-4">
+        <div class="max-w-7xl w-full flex flex-col md:flex-row card-main shadow-2xl">
+            
+            <!-- PANEL IZQUIERDO: IMAGEN + TEXTO -->
+            <div class="w-full md:w-5/12 img-side-panel p-6 md:p-8 text-white flex flex-col justify-between min-h-[350px] md:min-h-full">
+                <div>
+                    <span class="font-mono text-[10px] text-[#6cf8bb] tracking-[0.3em] uppercase font-bold">Protocolo de Registro</span>
+                    <h2 class="text-4xl font-heading font-bold mt-4 leading-tight">Acceso Forense Autorizado.</h2>
+                    <p class="text-gray-300 mt-4 text-sm leading-relaxed max-w-xs">
+                        Establezca su identidad única dentro del ecosistema de certificación de arte más seguro del mundo.
+                    </p>
+                </div>
+                
+                <div class="bg-black/30 backdrop-blur-md border border-white/10 p-6 rounded-xl">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="material-symbols-outlined text-[#6cf8bb]">verified_user</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest">Seguridad de Nivel Profesional</span>
+                    </div>
+                    <p class="text-[11px] text-gray-300 leading-normal">
+                        Su firma electrónica será generada bajo estándares PKI. VerisArt no almacena su clave privada por protocolo de seguridad Clase-4.
+                    </p>
+                </div>
+            </div>
+
+            <!-- PANEL DERECHO: FORMULARIO -->
+            <div class="w-full md:w-7/12 p-6 md:p-8 bg-white">
+                <div class="mb-6">
+                    <h1 class="text-3xl font-heading font-bold text-gray-900">Crear Cuenta Forense</h1>
+                    <p class="text-gray-500 text-sm mt-2">Complete todos los campos para la validación de su perfil profesional.</p>
+                </div>
+
+                <form class="space-y-4" action="dashboard.html" method="GET">
+                    <!-- Fila 1: ID y Nombre Artístico -->
+                    <div class="form-grid-validation">
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Cédula de Identidad</label>
+                            <input type="text" class="input-standard font-mono mt-1" placeholder="172XXXXXXL">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Nombre Artístico</label>
+                            <input type="text" class="input-standard mt-1" placeholder="Ej. Alex Thorne">
+                        </div>
+                    </div>
+
+                    <!-- Fila 2: Nombre Completo -->
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Nombres y Apellidos Completos</label>
+                        <input type="text" class="input-standard mt-1" placeholder="Nombre legal completo">
+                    </div>
+
+                    <!-- Fila 3: Email con Doble Validación -->
+                    <div class="form-grid-validation">
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Correo Electrónico</label>
+                            <input type="email" class="input-standard mt-1" placeholder="usuario@forense.art">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Confirmar Correo</label>
+                            <input type="email" class="input-standard mt-1" placeholder="Repita su correo">
+                        </div>
+                    </div>
+
+                    <!-- Fila 4: Contraseña Acceso con Doble Validación -->
+                    <div class="form-grid-validation">
+                        <div>
+                            <label class="flex items-center h-5 gap-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest relative group cursor-help w-max">
+                                Contraseña de Acceso
+                                <span class="material-symbols-outlined text-[14px] text-gray-400 hover:text-black transition-colors">help</span>
+                                <div class="absolute bottom-full left-0 mb-2 hidden group-hover:block w-64 p-3 bg-[#131b2e] text-white text-[11px] rounded shadow-xl z-50 normal-case tracking-normal border border-white/10 font-normal leading-relaxed">
+                                    Esta contraseña servirá únicamente para iniciar sesión en su cuenta dentro de la plataforma de VerisArt.
+                                </div>
+                            </label>
+                            <input type="password" class="input-standard mt-1" placeholder="••••••••">
+                        </div>
+                        <div>
+                            <label class="flex items-center h-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Confirmar Contraseña</label>
+                            <input type="password" class="input-standard mt-1" placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <hr class="border-gray-100 my-4">
+
+                    <!-- Fila 5: Contraseña Firma (p12) con Doble Validación -->
+                    <div class="form-grid-validation">
+                        <div>
+                            <label class="flex items-center h-5 gap-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest relative group cursor-help w-max">
+                                Clave de Firma (.p12)
+                                <span class="material-symbols-outlined text-[14px] text-gray-400 hover:text-black transition-colors">help</span>
+                                <div class="absolute bottom-full left-0 mb-2 hidden group-hover:block w-64 p-3 bg-[#131b2e] text-white text-[11px] rounded shadow-xl z-50 normal-case tracking-normal border border-white/10 font-normal leading-relaxed">
+                                    Clave criptográfica para su archivo de firma (.p12). Se usará estrictamente para firmar digitalmente. Por seguridad, VerisArt NO almacena esta clave.
+                                </div>
+                            </label>
+                            <input type="password" class="input-standard mt-1" placeholder="Clave privada">
+                        </div>
+                        <div>
+                            <label class="flex items-center h-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Confirmar Clave de Firma</label>
+                            <input type="password" class="input-standard mt-1" placeholder="Clave privada">
+                        </div>
+                    </div>
+
+                    <!-- Checkbox de Términos -->
+                    <div class="flex items-start gap-3 py-2">
+                        <input type="checkbox" id="terms-check" class="mt-1 h-4 w-4 rounded border-gray-300 text-black focus:ring-black">
+                        <label class="text-[11px] text-gray-500 leading-relaxed">
+                            He leído y acepto los <button type="button" onclick="openModal()" class="text-secondary font-bold underline">Términos de Servicio Forense</button> y entiendo que soy responsable de la custodia de mi clave de firma.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-black w-full py-3 text-xs uppercase tracking-[0.3em] font-bold mt-4 shadow-lg shadow-black/10">
+                        Crear Cuenta y Generar PKI
+                        <span class="material-symbols-outlined">shield</span>
+                    </button>
+                </form>
+                <script>
+                    // Validar nativamente que todos los campos del formulario estén llenos
+                    document.querySelectorAll('form input').forEach(input => input.required = true);
+                </script>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER REUTILIZABLE -->
+    <div id="footer-container"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+
+    <!-- MODAL DE TÉRMINOS -->
+    <div id="modal-terms" class="modal-overlay">
+        <div class="bg-white p-8 rounded-2xl max-w-xl w-full m-4 shadow-2xl border border-gray-100 relative">
+            <button type="button" onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors" title="Cerrar">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <h3 class="font-heading font-bold text-2xl mb-4">Protocolo Legal VerisArt</h3>
+            <div class="h-64 overflow-y-auto text-sm text-gray-600 mb-8 pr-4 leading-relaxed font-body">
+                <p class="mb-4"><b>1. Identidad Digital:</b> Al registrarse, usted garantiza que los datos proporcionados son verídicos y corresponden a su identidad legal o profesional.</p>
+                <p class="mb-4"><b>2. Custodia de Firma (.p12):</b> Usted reconoce que VerisArt no almacena su contraseña de firma. En caso de pérdida, la recuperación del acceso a la firma es imposible por diseño de seguridad.</p>
+                <p><b>3. Responsabilidad:</b> El uso indebido de las certificaciones emitidas bajo su firma será responsabilidad exclusiva del titular de la cuenta.</p>
+            </div>
+            <button onclick="closeModal()" class="btn-black w-full py-4 uppercase font-bold tracking-widest">Entiendo y Acepto los Protocolos</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById('modal-terms').style.display = 'flex'; }
+        function closeModal() { 
+            document.getElementById('modal-terms').style.display = 'none'; 
+            document.getElementById('terms-check').checked = true;
+        }
+    </script>
+
+</body>
+</html>

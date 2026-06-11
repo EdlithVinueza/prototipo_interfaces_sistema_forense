@@ -1,0 +1,22 @@
+[
+    {
+        "id": "cf72a3b1-129a-4c25-8390-e5b1d9c7a02b",
+        "artist_key_id": "ak_8f92bd3a",
+        "system_key_id": "sys_ca_master_1",
+        "perceptual_hash": "pHash-7a8b9c1d2e3f4a5b",
+        "cryptographic_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "artist_signature": "MEUCIQC...",
+        "system_signature": "MEQCID...",
+        "certified_at": "2026-06-10 14:30:00"
+    },
+    {
+        "id": "9f8a2c1d-8b7e-4d3a-2c1b-7a6b5c4d3e2f",
+        "artist_key_id": "ak_8f92bd3a",
+        "system_key_id": "sys_ca_master_1",
+        "perceptual_hash": "pHash-1a2b3c4d5e6f7a8b",
+        "cryptographic_hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "artist_signature": "MEYCIQD...",
+        "system_signature": "MEUCIQ...",
+        "certified_at": "2026-06-08 09:15:22"
+    }
+]

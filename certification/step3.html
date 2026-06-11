@@ -1,0 +1,35 @@
+        <div class="card-main p-6 md:p-8 bg-white text-center max-w-2xl mx-auto animate-fade-in">
+            <div class="mb-4">
+                <div class="w-14 h-14 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <span class="material-symbols-outlined text-3xl text-secondary">verified</span>
+                </div>
+                <h2 class="text-2xl font-heading font-bold text-gray-900">¡Obra Certificada!</h2>
+                <p class="text-gray-500 text-xs mt-1">Se ha generado el sello de autenticidad inmutable.</p>
+            </div>
+
+            <div class="bg-surface rounded-xl p-5 border border-outline-variant/30 text-left mb-6">
+                <div class="flex justify-between items-center mb-3 border-b border-outline-variant pb-3">
+                    <span class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Hash de Seguridad</span>
+                    <span class="text-[10px] font-mono text-primary font-bold">SHA-256: 8D3...F21</span>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between text-[11px]">
+                        <span class="text-gray-500">ID Forense:</span>
+                        <span class="font-bold">VA-2024-9981</span>
+                    </div>
+                    <div class="flex justify-between text-[11px]">
+                        <span class="text-gray-500">Fecha de Sello:</span>
+                        <span class="font-bold">14 Mayo 2024 - 18:32 GMT</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <button class="btn-black !py-3 w-full uppercase tracking-[0.2em] text-[10px]">
+                    <span class="material-symbols-outlined text-sm">download</span> Descargar Certificado (PDF)
+                </button>
+                <button onclick="cancelCertification()" class="btn-ghost !py-3 w-full uppercase tracking-[0.2em] text-[10px]">
+                    Volver a la Bóveda
+                </button>
+            </div>
+        </div>

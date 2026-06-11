@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bóveda Digital - VerisArt</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@600;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <div id="navbar-container"></div>
+    <script>
+        fetch('nav-session.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-6 pb-12 w-full">
+
+        <!-- Header de Bienvenida -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-6 gap-6">
+            <div>
+                <span class="font-mono text-[10px] text-secondary font-bold tracking-[0.3em] uppercase">Status: Agente
+                    Conectado</span>
+                <h1 class="text-4xl font-heading font-bold text-gray-900 mt-2 tracking-tight">Bóveda de Certificados
+                </h1>
+            </div>
+            <div class="flex gap-3">
+                <button
+                    class="btn-black !bg-white !text-black border border-black !text-[10px] uppercase tracking-widest">
+                    Historial Completo
+                </button>
+                <button onclick="startCertification()" class="btn-black !text-[10px] uppercase tracking-widest">
+                    Nueva Certificación
+                </button>
+            </div>
+        </div>
+
+        <!-- VISTA: DASHBOARD PRINCIPAL -->
+        <div id="dashboard-view">
+            <!-- Filtros de Búsqueda -->
+            <div class="flex flex-col md:flex-row gap-4 mb-6">
+                <div class="flex-grow relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+                    <input type="text" id="search-filter" class="input-standard w-full pl-12" placeholder="Buscar por ID, Hash (SHA-256) o Fecha de Sello...">
+                </div>
+                <button class="btn-black !py-3 !px-6" onclick="renderCertificates()">Refrescar</button>
+            </div>
+
+            <!-- Contenedor de la Tabla o Estado Vacío -->
+            <div id="certificates-container" class="card-main !p-0 overflow-hidden min-h-[300px]">
+                <!-- Renderizado dinámico mediante JS -->
+            </div>
+        </div>
+
+        <!-- VISTA: FLUJO DE CERTIFICACIÓN (SPA) -->
+        <div id="certification-view" class="hidden">
+            <!-- Stepper Dinámico -->
+            <div class="stepper-container" id="stepper-ui">
+                <!-- Se actualiza por JS -->
+            </div>
+
+            <!-- Contenedor del Paso Actual -->
+            <div id="step-content-container">
+                <!-- Aquí se inyecta step1.html, step2.html, etc. -->
+            </div>
+        </div>
+
+        <script>
+            let db_certificates = [];
+
+            const fallback_data = [
+                {
+                    id: "cf72a3b1-129a-4c25-8390-e5b1d9c7a02b",
+                    artist_key_id: "ak_8f92bd3a",
+                    system_key_id: "sys_ca_master_1",
+                    perceptual_hash: "pHash-7a8b9c1d2e3f4a5b",
+                    cryptographic_hash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                    artist_signature: "MEUCIQC...",
+                    system_signature: "MEQCID...",
+                    certified_at: "2026-06-10 14:30:00"
+                },
+                {
+                    id: "9f8a2c1d-8b7e-4d3a-2c1b-7a6b5c4d3e2f",
+                    artist_key_id: "ak_8f92bd3a",
+                    system_key_id: "sys_ca_master_1",
+                    perceptual_hash: "pHash-1a2b3c4d5e6f7a8b",
+                    cryptographic_hash: "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+                    artist_signature: "MEYCIQD...",
+                    system_signature: "MEUCIQ...",
+                    certified_at: "2026-06-08 09:15:22"
+                }
+            ];
+
+            // Cargar la base de datos simulada desde el archivo JSON
+            fetch('certificates.json')
+                .then(response => {
+                    if (!response.ok) throw new Error("Network error");
+                    return response.json();
+                })
+                .then(data => {
+                    db_certificates = data;
+                    renderCertificates();
+                })
+                .catch(error => {
+                    console.warn('Usando datos de respaldo (CORS/Fetch falló):', error);
+                    db_certificates = fallback_data;
+                    renderCertificates();
+                });
+
+            function renderCertificates(query = "") {
+                const container = document.getElementById('certificates-container');
+                const filtered = db_certificates.filter(cert => {
+                    const term = query.toLowerCase();
+                    return cert.id.toLowerCase().includes(term) || 
+                           cert.cryptographic_hash.toLowerCase().includes(term) ||
+                           cert.certified_at.toLowerCase().includes(term);
+                });
+
+                if (filtered.length === 0) {
+                    container.innerHTML = `
+                        <div class="p-16 flex flex-col items-center justify-center text-center h-full">
+                            <span class="material-symbols-outlined text-6xl text-gray-200 mb-4">document_scanner</span>
+                            <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">No tienes certificados</h3>
+                            <p class="text-gray-500 text-sm max-w-sm">No encontramos registros digitales que coincidan. ¡Comencemos a certificar tu primera obra!</p>
+                            <button onclick="startCertification()" class="btn-black mt-6 !py-3 !px-6 uppercase tracking-widest text-[10px]">Iniciar Certificación</button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = `
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100">
+                                    <th class="p-6">ID de Certificado</th>
+                                    <th class="p-6">pHash (Visual)</th>
+                                    <th class="p-6">Cryptographic Hash (SHA-256)</th>
+                                    <th class="p-6">Fecha de Sello</th>
+                                    <th class="p-6">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+
+                filtered.forEach(cert => {
+                    html += `
+                        <tr class="border-b border-gray-50 hover:bg-[#f7f9fb] transition-colors">
+                            <td class="p-6 font-mono text-xs font-semibold text-gray-900" title="${cert.id}">${cert.id.split('-')[0]}...</td>
+                            <td class="p-6 font-mono text-[10px] text-gray-500">${cert.perceptual_hash}</td>
+                            <td class="p-6 font-mono text-[10px] text-gray-500 truncate max-w-[150px]" title="${cert.cryptographic_hash}">${cert.cryptographic_hash.substring(0, 16)}...</td>
+                            <td class="p-6 text-xs text-gray-600">${cert.certified_at}</td>
+                            <td class="p-6 flex gap-2">
+                                <button class="text-secondary hover:text-green-600 transition-colors" title="Ver Detalles">
+                                    <span class="material-symbols-outlined text-lg">visibility</span>
+                                </button>
+                                <button class="text-gray-400 hover:text-black transition-colors" title="Descargar Certificado">
+                                    <span class="material-symbols-outlined text-lg">download</span>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                html += `</tbody></table></div>`;
+                container.innerHTML = html;
+            }
+
+            document.getElementById('search-filter').addEventListener('input', (e) => {
+                renderCertificates(e.target.value);
+            });
+
+            // --- LÓGICA SPA: FLUJO DE CERTIFICACIÓN ---
+
+            function startCertification() {
+                document.getElementById('dashboard-view').classList.add('hidden');
+                document.getElementById('certification-view').classList.remove('hidden');
+                loadStep(1);
+            }
+
+            function cancelCertification() {
+                document.getElementById('certification-view').classList.add('hidden');
+                document.getElementById('dashboard-view').classList.remove('hidden');
+            }
+
+            function loadStep(stepNumber) {
+                renderStepper(stepNumber);
+                fetch(`certification/step${stepNumber}.html`)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById('step-content-container').innerHTML = html;
+                    });
+            }
+
+            function renderStepper(currentStep) {
+                const stepper = document.getElementById('stepper-ui');
+                const checkIcon = `<div class="w-5 h-5 bg-white rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-[14px] text-secondary font-bold">check</span></div>`;
+                
+                let s1_class = currentStep >= 1 ? (currentStep > 1 ? 'completed' : 'active') : '';
+                let s1_content = currentStep >= 1 ? checkIcon : '1';
+                let s1_line = currentStep > 1 ? '!bg-[#7df1b8]' : (currentStep === 1 ? 'style="background: linear-gradient(to right, #7df1b8 50%, #e2e8f0 50%);"' : '');
+
+                let s2_class = currentStep >= 2 ? (currentStep > 2 ? 'completed' : 'active') : '';
+                let s2_content = currentStep >= 2 ? checkIcon : '2';
+                let s2_line = currentStep > 2 ? '!bg-[#7df1b8]' : (currentStep === 2 ? 'style="background: linear-gradient(to right, #7df1b8 50%, #e2e8f0 50%);"' : '');
+
+                let s3_class = currentStep === 3 ? 'active' : '';
+                let s3_content = currentStep === 3 ? checkIcon : '3';
+
+                stepper.innerHTML = `
+                    <div class="step-item ${s1_class}">
+                        <div class="step-circle">${s1_content}</div>
+                        <span class="step-label">Carga y Validación</span>
+                        <div class="step-connector ${s1_line}"></div>
+                    </div>
+                    <div class="step-item ${s2_class}">
+                        <div class="step-circle">${s2_content}</div>
+                        <span class="step-label">Firma del Autor</span>
+                        <div class="step-connector ${s2_line}"></div>
+                    </div>
+                    <div class="step-item ${s3_class}">
+                        <div class="step-circle">${s3_content}</div>
+                        <span class="step-label">Descarga Certificada</span>
+                    </div>
+                `;
+            }
+        </script>
+
+    </main>
+
+    <footer class="bg-white py-6 px-6 md:px-12 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6 mt-auto w-full z-50 relative">
+        <div class="flex gap-8 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            <a href="#" class="hover:text-black">Aviso Legal</a>
+            <a href="#" class="hover:text-black">Privacidad</a>
+            <a href="#" class="hover:text-black">Términos</a>
+            <a href="#" class="hover:text-black">Soporte PKI</a>
+        </div>
+        <span class="font-heading font-bold text-lg tracking-tighter">VERISART</span>
+    </footer>
+</body>
+</html>
