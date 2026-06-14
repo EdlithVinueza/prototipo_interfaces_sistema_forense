@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="flex flex-col min-h-screen bg-[#f7f9fb]">
+<body class="flex flex-col bg-[#f7f9fb]">
     <div id="navbar-container"></div>
     <script>
         fetch('Navbar.html')
@@ -19,21 +19,21 @@
     </script>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow flex items-center justify-center p-2 md:p-4">
-        <div class="max-w-7xl w-full flex flex-col md:flex-row card-main shadow-2xl">
+    <main class="flex-grow flex p-6">
+        <div class="max-w-6xl w-full flex flex-col md:flex-row card-main m-auto">
             
             <!-- PANEL IZQUIERDO: IMAGEN + TEXTO -->
-            <div class="w-full md:w-5/12 img-side-panel p-6 md:p-8 text-white flex flex-col justify-between min-h-[350px] md:min-h-full">
+            <div class="w-full md:w-5/12 img-side-panel relative p-8 text-white flex flex-col justify-between">
                 <div>
-                    <span class="font-mono text-[10px] text-[#6cf8bb] tracking-[0.3em] uppercase font-bold">Protocolo de Registro</span>
-                    <h2 class="text-4xl font-heading font-bold mt-4 leading-tight">Acceso Forense Autorizado.</h2>
-                    <p class="text-gray-300 mt-4 text-sm leading-relaxed max-w-xs">
+                    <span class="font-mono text-[9px] text-[#6cf8bb] tracking-[0.3em] uppercase font-bold">Protocolo de Registro</span>
+                    <h2 class="text-2xl font-heading font-bold mt-2 leading-tight">Acceso Forense Autorizado.</h2>
+                    <p class="text-gray-300 mt-2 text-xs leading-relaxed max-w-xs">
                         Establezca su identidad única dentro del ecosistema de certificación de arte más seguro del mundo.
                     </p>
                 </div>
                 
-                <div class="bg-black/30 backdrop-blur-md border border-white/10 p-6 rounded-xl">
-                    <div class="flex items-center gap-3 mb-3">
+                <div class="bg-black/30 backdrop-blur-md border border-white/10 p-3 rounded-xl mt-4">
+                    <div class="flex items-center gap-2 mb-2">
                         <span class="material-symbols-outlined text-[#6cf8bb]">verified_user</span>
                         <span class="text-[10px] font-bold uppercase tracking-widest">Seguridad de Nivel Profesional</span>
                     </div>
@@ -44,13 +44,13 @@
             </div>
 
             <!-- PANEL DERECHO: FORMULARIO -->
-            <div class="w-full md:w-7/12 p-6 md:p-8 bg-white">
-                <div class="mb-6">
-                    <h1 class="text-3xl font-heading font-bold text-gray-900">Crear Cuenta Forense</h1>
-                    <p class="text-gray-500 text-sm mt-2">Complete todos los campos para la validación de su perfil profesional.</p>
+            <div class="w-full md:w-7/12 p-6 md:p-5 bg-white flex flex-col justify-center">
+                <div class="mb-2">
+                    <h1 class="text-2xl font-heading font-bold text-gray-900">Crear Cuenta Forense</h1>
+                    <p class="text-gray-500 text-xs mt-1">Complete todos los campos para la validación de su perfil profesional.</p>
                 </div>
 
-                <form class="space-y-4" action="dashboard.html" method="GET">
+                <form class="space-y-1.5" action="dashboard.html" method="GET">
                     <!-- Fila 1: ID y Nombre Artístico -->
                     <div class="form-grid-validation">
                         <div>
@@ -58,8 +58,8 @@
                             <input type="text" class="input-standard font-mono mt-1" placeholder="172XXXXXXL">
                         </div>
                         <div>
-                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Nombre Artístico</label>
-                            <input type="text" class="input-standard mt-1" placeholder="Ej. Alex Thorne">
+                            <label class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Nombre Artístico</label>
+                            <input type="text" class="input-standard mt-0.5" placeholder="Ej. Alex Thorne">
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@
                         </div>
                     </div>
 
-                    <hr class="border-gray-100 my-4">
+                    <!-- Separador eliminado para ahorrar espacio -->
 
                     <!-- Fila 5: Contraseña Firma (p12) con Doble Validación -->
                     <div class="form-grid-validation">
@@ -127,7 +127,7 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="btn-black w-full py-3 text-xs uppercase tracking-[0.3em] font-bold mt-4 shadow-lg shadow-black/10">
+                    <button type="submit" class="btn-black w-full py-1.5 text-[10px] uppercase tracking-[0.2em] font-bold mt-1 shadow-lg shadow-black/10">
                         Crear Cuenta y Generar PKI
                         <span class="material-symbols-outlined">shield</span>
                     </button>

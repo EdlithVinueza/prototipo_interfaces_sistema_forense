@@ -1,36 +1,45 @@
-        <div class="card-main p-6 md:p-8 bg-white max-w-2xl mx-auto animate-fade-in">
-            <div class="text-center mb-6">
-                <h2 class="text-2xl font-heading font-bold">Firma del Autor</h2>
-                <p class="text-gray-500 text-xs mt-1">Cargue su certificado PKI para autorizar este sello forense.</p>
-            </div>
+<div class="card-main p-4 md:p-6 bg-white max-w-2xl mx-auto animate-fade-in">
+    <div class="text-center mb-3">
+        <h2 class="text-2xl font-heading font-bold">Datos de la Obra</h2>
+        <p class="text-gray-500 text-xs mt-1">Complete los metadatos técnicos de la obra para el certificado.</p>
+    </div>
 
-            <form class="space-y-4">
-                <div class="drop-zone min-h-[160px] flex flex-col items-center justify-center p-6 text-center mb-4">
-                    <span class="material-symbols-outlined text-3xl text-secondary mb-3">key</span>
-                    <h3 class="font-bold text-sm mb-1">Archivo de Certificado</h3>
-                    <p class="text-[10px] text-gray-500 mb-4 uppercase">Extensión .P12</p>
-                    <label class="btn-black !py-2 !px-6 !text-[10px] cursor-pointer">
-                        <span class="material-symbols-outlined text-sm">upload_file</span> Seleccionar P12
-                        <input type="file" class="hidden" accept=".p12">
-                    </label>
-                </div>
-
-                <div class="bg-surface p-4 rounded-xl border border-outline-variant/30">
-                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Contraseña de Firma</label>
-                    <input type="password" class="input-standard w-full !py-2 !px-3 !text-sm" placeholder="Ingrese su contraseña PKI">
-                    <p class="text-[9px] text-gray-400 mt-2 italic flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[10px]">info</span>
-                        Esta es la clave que definió en su registro, no se almacena en el servidor.
-                    </p>
-                </div>
-
-                <div class="flex justify-between border-t border-gray-100 pt-6 mt-6">
-                    <button type="button" onclick="loadStep(1)" class="btn-ghost !px-6 !py-3 uppercase tracking-[0.2em] text-[10px]">
-                        <span class="material-symbols-outlined text-sm">arrow_back</span> Atrás
-                    </button>
-                    <button type="button" onclick="loadStep(3)" class="btn-black !px-8 !py-3 uppercase tracking-[0.2em] text-[10px]">
-                        Firmar y Sellar
-                    </button>
-                </div>
-            </form>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 text-left">
+        <div>
+            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Título de la Obra</label>
+            <input type="text" class="input-standard mt-1 w-full" placeholder="Ej. Reflejos de la Memoria">
         </div>
+
+        <div>
+            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Fecha de Creación</label>
+            <input type="datetime-local" class="input-standard mt-1 w-full" value="2026-05-10T15:30">
+            <p class="text-[8px] text-gray-400 mt-0.5 italic">Fecha declarada por el autor.</p>
+        </div>
+
+        <div>
+            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">Software Original</label>
+            <input type="text" class="input-standard mt-0.5 w-full" placeholder="Ej. FireAlpaca v2.11">
+            <p class="text-[8px] text-gray-400 mt-0.5 italic leading-tight">Software de donde exportaste la imagen y el PSD.</p>
+        </div>
+
+        <div>
+            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">Hardware Adicional</label>
+            <input type="text" class="input-standard mt-0.5 w-full" placeholder="Ej. Huion Inspiroy H610PRO v2">
+            <p class="text-[8px] text-gray-400 mt-0.5 italic leading-tight">Tableta gráfica u otro periférico utilizado.</p>
+        </div>
+
+        <div class="md:col-span-2">
+            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">Detalles Técnicos</label>
+            <input type="text" class="input-standard mt-1 w-full" placeholder="Ej. Uso de capas, técnicas, brochas específicas">
+        </div>
+    </div>
+
+    <div class="flex justify-between border-t border-gray-100 pt-4 mt-3">
+        <button type="button" onclick="loadStep(1)" class="btn-ghost !px-6 !py-2 uppercase tracking-[0.2em] text-[10px]">
+            <span class="material-symbols-outlined text-sm">arrow_back</span> Atrás
+        </button>
+        <button type="button" onclick="loadStep(3)" class="btn-black !px-8 !py-2 uppercase tracking-[0.2em] text-[10px]">
+            Siguiente Paso <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </button>
+    </div>
+</div>

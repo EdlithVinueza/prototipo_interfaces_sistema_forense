@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#f7f9fb] flex flex-col min-h-screen">
+<body class="bg-[#f7f9fb] flex flex-col">
 
     <div id="navbar-container"></div>
     <script>
@@ -20,12 +20,13 @@
     </script>
 
     <!-- MAIN CONTENT -->
-    <main class="max-w-7xl mx-auto px-6 py-6 md:py-8 flex-grow w-full">
+    <main class="flex-grow flex p-6">
+        <div class="max-w-7xl w-full m-auto">
         
         <!-- Encabezado de Página -->
-        <div class="mb-8">
-            <h1 class="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">Consulta Pública Forense</h1>
-            <p class="text-gray-500 text-lg max-w-3xl leading-relaxed">
+        <div class="mb-4">
+            <h1 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-2">Consulta Pública Forense</h1>
+            <p class="text-gray-500 text-sm max-w-3xl leading-relaxed">
                 Aqui podra verificar la autenticidad de una obra de arte, y verificar si fue certificada por nosotros.
             </p>
         </div>
@@ -34,18 +35,18 @@
             
             <!-- ÁREA DE CARGA (IZQUIERDA) -->
             <div class="w-full lg:w-8/12 card-main shadow-2xl p-6 bg-white">
-                <div class="drop-zone min-h-[350px]">
+                <div class="drop-zone min-h-[250px]">
                     <!-- Etiquetas técnicas esquinas -->
 
                     <span class="tech-tag absolute bottom-6 right-8">SCAN_READY_STATE: IDLE</span>
 
                     <div class="flex flex-col items-center text-center px-6">
-                        <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-8">
+                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6">
                             <span class="material-symbols-outlined text-4xl text-gray-400">fingerprint</span>
                         </div>
                         
-                        <h2 class="text-2xl font-heading font-bold mb-4 text-gray-900">Arrastrar y soltar escaneo forense</h2>
-                        <p class="text-gray-400 text-sm mb-10 max-w-sm leading-relaxed uppercase tracking-tighter">
+                        <h2 class="text-xl font-heading font-bold mb-2 text-gray-900">Arrastrar y soltar escaneo forense</h2>
+                        <p class="text-gray-400 text-xs mb-6 max-w-sm leading-relaxed uppercase tracking-tighter">
                             Cargue archivos PNG O JPEG.
                         </p>
 
@@ -80,7 +81,7 @@
                     </div>
 
                     <!-- Decoración visual (barra de progreso vacía) -->
-                    <div class="mt-8 h-6 bg-gray-50 rounded-full border border-gray-100"></div>
+                    <div class="mt-4 h-6 bg-gray-50 rounded-full border border-gray-100"></div>
                 </div>
 
                 <div class="p-4 bg-secondary-container/10 rounded-xl border border-secondary-container/20 flex gap-4 shadow-xl">
@@ -91,6 +92,7 @@
                 </div>
 
             </div>
+        </div>
         </div>
     </main>
 

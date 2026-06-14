@@ -1,11 +1,11 @@
-<div class="card-main p-6 md:p-8 bg-white animate-fade-in">
-    <div class="text-center mb-6">
+<div class="card-main p-4 md:p-6 bg-white animate-fade-in">
+    <div class="text-center mb-3">
         <h2 class="text-2xl font-heading font-bold">Carga de Archivos Forenses</h2>
         <p class="text-gray-500 text-xs mt-1">Se requieren ambos archivos para completar el análisis de integridad.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div class="drop-zone min-h-[200px] flex flex-col items-center justify-center p-6 text-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+        <div class="drop-zone min-h-[160px] flex flex-col items-center justify-center p-4 text-center">
             <span class="material-symbols-outlined text-3xl text-gray-400 mb-3">layers</span>
             <h3 class="font-bold text-sm mb-1">Archivo Maestro</h3>
             <p class="text-[10px] text-gray-500 mb-4 uppercase">Formato .PSD</p>
@@ -15,7 +15,7 @@
             </label>
         </div>
 
-        <div class="drop-zone min-h-[200px] flex flex-col items-center justify-center p-6 text-center">
+        <div class="drop-zone min-h-[160px] flex flex-col items-center justify-center p-4 text-center">
             <span class="material-symbols-outlined text-3xl text-gray-400 mb-3">image</span>
             <h3 class="font-bold text-sm mb-1">Imagen de Referencia</h3>
             <p class="text-[10px] text-gray-500 mb-4 uppercase">Formato .PNG o .JPG</p>
@@ -27,7 +27,7 @@
     </div>
 
     <!-- Requisitos -->
-    <div class="bg-surface p-4 rounded-xl border border-outline-variant/30 flex gap-4 mb-6">
+    <div class="bg-surface p-3 rounded-xl border border-outline-variant/30 flex gap-4 mb-3">
         <span class="material-symbols-outlined text-secondary text-sm mt-0.5">info</span>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1 w-full">
             <div class="flex items-center gap-2 text-[10px] font-medium text-gray-600">
@@ -41,11 +41,11 @@
         </div>
     </div>
 
-    <div class="flex justify-between border-t border-gray-100 pt-6">
-        <button onclick="cancelCertification()" class="btn-ghost !px-6 !py-3 uppercase tracking-[0.2em] text-[10px]">
+    <div class="flex justify-between border-t border-gray-100 pt-4">
+        <button onclick="cancelCertification()" class="btn-ghost !px-6 !py-2 uppercase tracking-[0.2em] text-[10px]">
             Cancelar
         </button>
-        <button onclick="loadStep(2)" class="btn-black !px-8 !py-3 uppercase tracking-[0.2em] text-[10px]">
+        <button onclick="loadStep(2)" class="btn-black !px-8 !py-2 uppercase tracking-[0.2em] text-[10px]">
             Siguiente Paso <span class="material-symbols-outlined text-sm">arrow_forward</span>
         </button>
     </div>
