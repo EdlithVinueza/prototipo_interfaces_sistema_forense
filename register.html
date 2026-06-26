@@ -51,79 +51,47 @@
                 </div>
 
                 <form class="space-y-1.5" action="dashboard.html" method="GET">
-                    <!-- Fila 1: ID y Nombre Artístico -->
-                    <div class="form-grid-validation">
-                        <div>
-                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Cédula de Identidad</label>
-                            <input type="text" class="input-standard font-mono mt-1" placeholder="172XXXXXXL">
-                        </div>
-                        <div>
-                            <label class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Nombre Artístico</label>
-                            <input type="text" class="input-standard mt-0.5" placeholder="Ej. Alex Thorne">
-                        </div>
-                    </div>
-
-                    <!-- Fila 2: Nombre Completo -->
+                    <!-- Fila 1: Cédula / Identificación -->
                     <div>
-                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Nombres y Apellidos Completos</label>
-                        <input type="text" class="input-standard mt-1" placeholder="Nombre legal completo">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Cédula / Identificación</label>
+                        <input type="text" name="identificacion" class="input-standard font-mono mt-1" placeholder="Ej. 172XXXXXXL">
                     </div>
 
-                    <!-- Fila 3: Email con Doble Validación -->
+                    <!-- Fila 2: Nombres y Apellidos -->
                     <div class="form-grid-validation">
                         <div>
-                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Correo Electrónico</label>
-                            <input type="email" class="input-standard mt-1" placeholder="usuario@forense.art">
+                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Nombres completos</label>
+                            <input type="text" name="nombres" class="input-standard mt-1" placeholder="Nombres">
                         </div>
                         <div>
-                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Confirmar Correo</label>
-                            <input type="email" class="input-standard mt-1" placeholder="Repita su correo">
-                        </div>
-                    </div>
-
-                    <!-- Fila 4: Contraseña Acceso con Doble Validación -->
-                    <div class="form-grid-validation">
-                        <div>
-                            <label class="flex items-center h-5 gap-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest relative group cursor-help w-max">
-                                Contraseña de Acceso
-                                <span class="material-symbols-outlined text-[14px] text-gray-400 hover:text-black transition-colors">help</span>
-                                <div class="absolute bottom-full left-0 mb-2 hidden group-hover:block w-64 p-3 bg-[#131b2e] text-white text-[11px] rounded shadow-xl z-50 normal-case tracking-normal border border-white/10 font-normal leading-relaxed">
-                                    Esta contraseña servirá únicamente para iniciar sesión en su cuenta dentro de la plataforma de VerisArt.
-                                </div>
-                            </label>
-                            <input type="password" class="input-standard mt-1" placeholder="••••••••">
-                        </div>
-                        <div>
-                            <label class="flex items-center h-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Confirmar Contraseña</label>
-                            <input type="password" class="input-standard mt-1" placeholder="••••••••">
+                            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Apellidos completos</label>
+                            <input type="text" name="apellidos" class="input-standard mt-1" placeholder="Apellidos">
                         </div>
                     </div>
 
-                    <!-- Separador eliminado para ahorrar espacio -->
+                    <!-- Fila 3: Correo electrónico -->
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Correo electrónico</label>
+                        <input type="email" name="correo" class="input-standard mt-1" placeholder="usuario@ejemplo.com">
+                    </div>
 
-                    <!-- Fila 5: Contraseña Firma (p12) con Doble Validación -->
-                    <div class="form-grid-validation">
-                        <div>
-                            <label class="flex items-center h-5 gap-1 text-[10px] font-bold text-gray-400 uppercase tracking-widest relative group cursor-help w-max">
-                                Clave de Firma (.p12)
-                                <span class="material-symbols-outlined text-[14px] text-gray-400 hover:text-black transition-colors">help</span>
-                                <div class="absolute bottom-full left-0 mb-2 hidden group-hover:block w-64 p-3 bg-[#131b2e] text-white text-[11px] rounded shadow-xl z-50 normal-case tracking-normal border border-white/10 font-normal leading-relaxed">
-                                    Clave criptográfica para su archivo de firma (.p12). Se usará estrictamente para firmar digitalmente. Por seguridad, VerisArt NO almacena esta clave.
-                                </div>
-                            </label>
-                            <input type="password" class="input-standard mt-1" placeholder="Clave privada">
-                        </div>
-                        <div>
-                            <label class="flex items-center h-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Confirmar Clave de Firma</label>
-                            <input type="password" class="input-standard mt-1" placeholder="Clave privada">
-                        </div>
+                    <!-- Fila 4: Nombre artístico / Seudónimo -->
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Nombre artístico / Seudónimo <span class="normal-case text-gray-500 font-normal">(Opcional)</span></label>
+                        <input type="text" name="seudonimo" class="input-standard mt-1" placeholder="Ej. Alex Thorne (recomendado para el certificado)">
+                    </div>
+
+                    <!-- Fila 5: Contraseña -->
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Contraseña</label>
+                        <input type="password" name="contrasena" class="input-standard mt-1" placeholder="••••••••">
                     </div>
 
                     <!-- Checkbox de Términos -->
                     <div class="flex items-start gap-3 py-2">
-                        <input type="checkbox" id="terms-check" class="mt-1 h-4 w-4 rounded border-gray-300 text-black focus:ring-black">
+                        <input type="checkbox" id="terms-check" name="terminos" class="mt-1 h-4 w-4 rounded border-gray-300 text-black focus:ring-black">
                         <label class="text-[11px] text-gray-500 leading-relaxed">
-                            He leído y acepto los <button type="button" onclick="openModal()" class="text-secondary font-bold underline">Términos de Servicio Forense</button> y entiendo que soy responsable de la custodia de mi clave de firma.
+                            Acepto los <button type="button" onclick="openModal()" class="text-secondary font-bold underline">términos de uso</button> y el tratamiento de mis datos personales para crear la cuenta.
                         </label>
                     </div>
 
