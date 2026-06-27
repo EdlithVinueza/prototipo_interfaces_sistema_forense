@@ -4,15 +4,15 @@
         <p class="text-gray-500 text-xs mt-1">Complete los metadatos técnicos de la obra para el certificado.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 text-left">
-        <!-- Título de la Obra -->
-        <div class="md:col-span-2">
-            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Título de la Obra</label>
-            <input type="text" name="titulo_obra" class="input-standard mt-1 w-full" placeholder="Ej. Reflejos de la Memoria">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 text-left">
+        <!-- Cédula del Artista -->
+        <div>
+            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Cédula del Artista</label>
+            <input type="text" name="cedula" class="input-standard mt-1 w-full" placeholder="Ej. 1712345678">
         </div>
 
         <!-- Categoría de la Obra -->
-        <div class="md:col-span-2">
+        <div>
             <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Categoría de la obra</label>
             <select name="categoria" class="input-standard mt-1 w-full bg-white">
                 <option value="" disabled selected>Seleccione una categoría</option>
@@ -21,6 +21,12 @@
                 <option value="pintura_digital">Pintura digital</option>
                 <option value="otro">Otro</option>
             </select>
+        </div>
+
+        <!-- Título de la Obra -->
+        <div class="md:col-span-2">
+            <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Título de la Obra</label>
+            <input type="text" name="titulo_obra" class="input-standard mt-1 w-full" placeholder="Ej. Reflejos de la Memoria">
         </div>
 
         <!-- Software Original -->
@@ -38,31 +44,31 @@
         <!-- Descripción -->
         <div class="md:col-span-2">
             <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Descripción <span class="normal-case text-gray-500 font-normal">(Opcional)</span></label>
-            <textarea name="descripcion" class="input-standard mt-1 w-full h-20 resize-none py-2" placeholder="Detalles adicionales de la obra..."></textarea>
+            <textarea name="descripcion" class="input-standard mt-1 w-full h-14 resize-none py-2" placeholder="Detalles adicionales de la obra..."></textarea>
         </div>
 
         <!-- Declaraciones Legales Obligatorias -->
-        <div class="md:col-span-2 mt-2 bg-gray-50 p-4 rounded-lg border border-gray-100">
-            <h3 class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-3 flex items-center gap-2">
+        <div class="md:col-span-2 mt-1 bg-gray-50 p-3 rounded-lg border border-gray-100">
+            <h3 class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-2 flex items-center gap-2">
                 <span class="material-symbols-outlined text-[16px] text-black">gavel</span>
-                Declaraciones Legales Obligatorias (EULA)
+                Declaraciones Legales (EULA)
             </h3>
-            <div class="space-y-3">
+            <div class="space-y-2">
                 <div class="flex items-start gap-3">
                     <input type="checkbox" id="declaracion1" name="declaracion_derechos" class="mt-0.5 h-4 w-4 rounded border-gray-300 text-black focus:ring-black">
-                    <label for="declaracion1" class="text-[11px] text-gray-600 leading-relaxed cursor-pointer">
+                    <label for="declaracion1" class="text-[11px] text-gray-600 leading-tight cursor-pointer">
                         Confirmo que soy el titular de los derechos intelectuales de esta obra.
                     </label>
                 </div>
                 <div class="flex items-start gap-3">
                     <input type="checkbox" id="declaracion2" name="declaracion_tecnica" class="mt-0.5 h-4 w-4 rounded border-gray-300 text-black focus:ring-black">
-                    <label for="declaracion2" class="text-[11px] text-gray-600 leading-relaxed cursor-pointer">
-                        Entiendo y apruebo el proceso de certificación técnica que inyectará datos en mi imagen.
+                    <label for="declaracion2" class="text-[11px] text-gray-600 leading-tight cursor-pointer">
+                        Entiendo y apruebo el proceso de certificación técnica.
                     </label>
                 </div>
                 <div class="flex items-start gap-3">
                     <input type="checkbox" id="declaracion3" name="declaracion_terminos" class="mt-0.5 h-4 w-4 rounded border-gray-300 text-black focus:ring-black">
-                    <label for="declaracion3" class="text-[11px] text-gray-600 leading-relaxed cursor-pointer">
+                    <label for="declaracion3" class="text-[11px] text-gray-600 leading-tight cursor-pointer">
                         Acepto los términos y condiciones específicos para la emisión de este certificado.
                     </label>
                 </div>
@@ -70,7 +76,7 @@
         </div>
     </div>
 
-    <div class="flex justify-between border-t border-gray-100 pt-4 mt-3">
+    <div class="flex justify-between border-t border-gray-100 pt-3 mt-2">
         <button type="button" onclick="loadStep(1)" class="btn-ghost !px-6 !py-2 uppercase tracking-[0.2em] text-[10px]">
             <span class="material-symbols-outlined text-sm">arrow_back</span> Atrás
         </button>

@@ -47,19 +47,22 @@
 
         <!-- VISTA: DASHBOARD PRINCIPAL -->
         <div id="dashboard-view">
-            <!-- Filtros de Búsqueda -->
-            <div class="flex flex-col md:flex-row gap-4 mb-6">
-                <div class="flex-grow relative">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
-                    <input type="text" id="search-filter" class="input-standard w-full pl-12" placeholder="Buscar por ID, Hash (SHA-256) o Fecha de Sello...">
-                </div>
-                <button class="btn-black !py-3 !px-6" onclick="renderCertificates()">Refrescar</button>
-            </div>
-
-            <!-- Contenedor de la Tabla o Estado Vacío -->
-            <div id="certificates-container" class="card-main !p-0 overflow-hidden min-h-[300px]">
-                <!-- Renderizado dinámico mediante JS -->
-            </div>
+            <div id="dashboard-table-container"></div>
+            <script>
+                fetch('dashboard-table.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('dashboard-table-container').innerHTML = data;
+                        
+                        // Agregar el listener del buscador después de inyectar el HTML
+                        document.getElementById('search-filter').addEventListener('input', (e) => {
+                            renderCertificates(e.target.value);
+                        });
+                        
+                        // Cargar JSON y renderizar
+                        loadCertificatesData();
+                    });
+            </script>
         </div>
 
         <!-- VISTA: FLUJO DE CERTIFICACIÓN (SPA) -->
@@ -99,21 +102,23 @@
                 }
             ];
 
-            // Cargar la base de datos simulada desde el archivo JSON
-            fetch('expedientes.json')
-                .then(response => {
-                    if (!response.ok) throw new Error("Network error");
-                    return response.json();
-                })
-                .then(data => {
-                    db_certificates = data;
-                    renderCertificates();
-                })
-                .catch(error => {
-                    console.warn('Usando datos de respaldo (CORS/Fetch falló):', error);
-                    db_certificates = fallback_data;
-                    renderCertificates();
-                });
+            // Función para cargar los expedientes
+            function loadCertificatesData() {
+                fetch('expedientes.json')
+                    .then(response => {
+                        if (!response.ok) throw new Error("Network error");
+                        return response.json();
+                    })
+                    .then(data => {
+                        db_certificates = data;
+                        renderCertificates();
+                    })
+                    .catch(error => {
+                        console.warn('Usando datos de respaldo (CORS/Fetch falló):', error);
+                        db_certificates = fallback_data;
+                        renderCertificates();
+                    });
+            }
 
             function renderCertificates(query = "") {
                 const container = document.getElementById('certificates-container');
@@ -179,9 +184,7 @@
                 container.innerHTML = html;
             }
 
-            document.getElementById('search-filter').addEventListener('input', (e) => {
-                renderCertificates(e.target.value);
-            });
+            // (El listener del buscador se agregó al cargar dashboard-table.html)
 
             // --- LÓGICA SPA: FLUJO DE CERTIFICACIÓN ---
 

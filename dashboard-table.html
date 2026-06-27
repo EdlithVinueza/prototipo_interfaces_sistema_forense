@@ -1,0 +1,13 @@
+            <!-- Filtros de Búsqueda -->
+            <div class="flex flex-col md:flex-row gap-4 mb-6">
+                <div class="flex-grow relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+                    <input type="text" id="search-filter" class="input-standard w-full pl-12" placeholder="Buscar por ID, Hash (SHA-256) o Fecha de Sello...">
+                </div>
+                <button class="btn-black !py-3 !px-6" onclick="renderCertificates()">Refrescar</button>
+            </div>
+
+            <!-- Contenedor de la Tabla o Estado Vacío -->
+            <div id="certificates-container" class="card-main !p-0 overflow-hidden min-h-[300px]">
+                <!-- Renderizado dinámico mediante JS -->
+            </div>
